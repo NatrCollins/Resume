@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- marlin-css -->
+    <link href="Design%20CV_files/marlin.css" rel="stylesheet" type="text/css">
+    <!-- General Sans -->
+    <link href="Design%20CV_files/css.css" rel="stylesheet">
+    <!--  -->
+    <title>Design CV</title>
+    <!--  -->
+    <style>
+        /* MARLIN OVERRIDES */
+        :root {
+            --primary: #1b1b1b;
+            --text: #1b1b1b;
+            --secondary: #969696;
+            --font-display: 'General Sans', monospace;
+            --font-body: 'General Sans', monospace;
+            --factor-type-h1: 0.42;
+            --factor-type-h3: 0.26;
+            /* --gradient-text: linear-gradient(#572A84, #C5B101); */
+            --master-h2-size: var(--master-body-1-size);
+            --master-h2-line-height: var(--master-body-2-line-height);
+        }
+
+        /* UNIQUE VARIABLES */
+        :root {
+            --gap: calc(var(--sc-1) * 0.5);
+            --line: 0.5px solid var(--primary);
+        }
+
+        /* STYLE INIT */
+        h1 {
+            font-weight: 640;
+            /* color: var(--gradient-text); */
+        }
+
+        h2 {
+            font-weight: 640;
+        }
+
+        h3 {
+            color: var(--secondary);
+            font-weight: 560;
+        }
+
+        /*  */
+        body {
+            padding: var(--sc-5) var(--sc-6);
+        }
+
+        /* PAGE CONSTRAINTS */
+        #page {
+            /* Enforce A4 aspect ratio */
+            aspect-ratio: 1 / 1.41421;
+            /* Convenient max-width */
+            /* max-width: 1080px; */
+            /* Pad the web preview (replaced with @page margin in print) */
+            padding: var(--sc-4);
+        }
+
+        /* PRINT */
+        @page {
+            size: A4;
+            margin: 8mm;
+        }
+
+        /* SPACING TOKENS */
+        :root {
+            --sp-0: 0.4vw;
+            --sc-1: 1.2vw;
+            --sp-2: 2vw;
+            --sp-3: 3.2vw;
+            --sp-4: 4vw;
+            --sp-5: 8vw;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+
+            /* RELATIVE FONT SIZES */
+            h1 {
+                font-size: var(--sp-4) !important;
+                line-height: var(--sp-5) !important;
+            }
+
+            h2 {
+                font-size: var(--sc-1) !important;
+                font-weight: 600 !important;
+                line-height: var(--sp-2) !important;
+            }
+
+            h3 {
+                font-size: calc(var(--sc-1)* 0.72) !important;
+                font-weight: 560 !important;
+                line-height: var(--sc-1) !important;
+                color: #A1A1A1;
+            }
+
+            h4 {
+                font-size: var(--sp-2);
+                font-weight: 640;
+            }
+
+            p {
+                font-size: var(--sc-1) !important;
+                font-weight: 400 !important;
+                line-height: calc(var(--sp-2) * 1.08) !important;
+            }
+
+            button {
+                display: none;
+            }
+
+            /* STRIP WEB ELEMENTS */
+            nav {
+                display: none;
+            }
+        }
+
+        main {
+            padding: var(--sc-4);
+        }
+
+        /* HEADER */
+        header {
+            margin-bottom: var(--sc-3);
+        }
+
+        /* RAIL | CONTACT */
+
+        #railContact{
+            /* grid-column: span var(--cols-C); */
+            display: flex;
+            justify-content: flex-start;
+            /* flex-flow: row-wrap; */
+        }
+
+        #railContact>* {
+            margin-bottom: var(--sc-1);
+        }
+
+
+        #railContact .email .social{
+            font-weight: 600;
+        
+        }
+
+        #railContact .social {
+            /* grid-column: span var(--cols-F); */
+            display: flex;
+            /* justify-content: flex-end; */
+            justify-content: flex-start;
+            flex-direction: row;
+        }
+
+        .link{
+            color: blueviolet;
+            text-decoration: underline;
+        }
+        
+
+        /* SECTION */
+        section {
+            display: grid;
+            grid-template-columns: repeat(var(--cols-L), 1fr);
+            padding-top: var(--sc-1);
+            padding-bottom: var(--sc-1);
+        }
+
+        section>* {
+            padding-top: var(--sc-1);
+        }
+
+        /* OVERLINES */
+        .label,
+        .body,
+        .fragment,
+        .segment {
+            border-top: var(--line);
+        }
+
+        /* GAPS */
+        .label,
+        .fragment {
+            margin-right: var(--gap);
+        }
+
+        /* LABEL */
+        .label {
+            grid-column: span var(--cols-C);
+        }
+
+        /* BODY */
+        .body {
+            grid-column: span var(--cols-I);
+            display: grid;
+            grid-template-columns: repeat(var(--cols-I), 1fr);
+        }
+
+        .body p {
+            grid-column: span var(--cols-I);
+        }
+
+        #sectionTechnical .body,
+        #sectionCareer .body {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        /* FRAGMENT */
+        .fragment {
+            grid-column: span var(--cols-C);
+            padding-top: var(--sc-1);
+            padding-right: var(--sc-1);
+        }
+
+        .fragment:nth-child(-n+3) {
+            padding-bottom: var(--sc-1);
+        }
+
+        .fragment h2 {
+            padding-bottom: var(--sc-1);
+        }
+
+        /* CAREER */
+        .segment {
+            grid-column: span var(--cols-I);
+            padding-top: var(--sc-1);
+            padding-right: var(--sc-1);
+            padding-bottom: var(--sc-1);
+        }
+
+        .segment>* {
+            padding-bottom: var(--sp-0);
+        }
+
+        /* RESPONSIVE */
+
+        @media screen and (max-width: 864px) {
+
+            /* STRIP BORDERS ON MOBILE (to reduce double ups) */
+            .body,
+            .fragment,
+            .segment {
+                border-top: none;
+            }
+
+            section {
+                margin-top: var(--sc-6);
+            }
+
+            .label h2 {
+                display: none;
+            }
+
+            #railContact .social {
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
+        }
+
+        /*  */
+    </style>
+</head>
+
+<body>
+
+    <div id="page">
+        <!-- TITLE -->
+        <header>
+            <h1>Natalie Collins.</h1>
+        </header>
+        <!-- RAIL | CONTACT -->
+        <div id="railContact">
+            <h2 class="email">+61 418 810 540    |<a class="link" href="mailto: n.r.collins@outlook.com">   n.r.collins@outlook.com  </a> |   Adelaide SA, 5035</h2>
+        </div>
+        <div>
+        <h2 class="social" link="" rel="socials"><a class="link" href="https://www.linkedin.com/in/natalie-collins/">linkedin.com/in/natalie-collins  |</a>   <a href="file:///C:/coding/111%20UX%20UI%20Course/Portfolio/portfolio-web-design/resume/portfolio@portfolio.com">  Portfolio@portfolio.com</a> </h2>
+            
+        </div>
+
+        <!-- SECTION | SUMMARY -->
+        <section id="sectionSummary">
+            <div class="label">
+                <h2>Summary</h2>
+            </div>
+
+            <div class="body">
+                <p>A personable and energetic people focussed digital 
+interaction designer with a background in travel and entertainment.
+                    Educated in UX/UI and Web Development, passionate 
+about creating and supporting innovative digital systems with a holistic
+ view to give all, the best personal experience with a strong belief in 
+“function over finesse”.</p>
+                <br>
+                <p>Experienced leader in the dynamic travel industry and
+ determined problem solver with a fine eye for detail whilst achieving 
+big picture goals. Extensive professional experience in designing and 
+supporting bespoke systems with a unique
+                    ability to forge strong relationships with key 
+stakeholders, making me an irreproachable collaborator.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION | TECHNICAL -->
+        <section id="sectionTechnical">
+            <div class="label">
+                <h2>Technical</h2>
+            </div>
+
+            <div class="body">
+                <!-- FRAGMENTS -->
+                <div class="fragment">
+                    <h2>UX Research</h2>
+                    <p>Full stack workflow from ideation, definition and prioritisation to testing and iterated interface design</p>
+                </div>
+                <div class="fragment">
+                    <h2>Accessibility Evaluation</h2>
+                    <p>Adept in ensuring all industry standards are met without compromising design aesthetics</p>
+                </div>
+                <div class="fragment">
+                    <h2>Project Mangement</h2>
+                    <p>Agile management of stakeholder and team interests with result focuss abiding to time and financial limitations</p>
+                </div>
+                <div class="fragment">
+                    <h2>Visual Design Specification</h2>
+                    <p>High efficacy in applying design principals with modern innovation</p>
+                </div>
+                <div class="fragment">
+                    <h2>UI Atomic Design and Prototyping</h2>
+                    <p>Highly proficient across all industry standard design and testing tools</p>
+                </div>
+                <div class="fragment">
+                    <h2>Interface Development</h2>
+                    <p>Applied use of dev tools including HTML5, CSS, JavaScript and Bootstrap</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION | CAREER -->
+        <section id="sectionCareer">
+            <div class="label">
+                <h2>Career</h2>
+            </div>
+
+            <div class="body">
+                <!-- SEGMENTS -->
+                <div class="segment">
+                    <h2>Corporate Travel Manager</h2> <h3> 2016-2020</h3>
+                    <h3>FCM Travel Solutions/ Adelaide, SA</h3> 
+                    <p> Expertise in travel solutions for large enterprise clients</p>
+                    <p>→ Provide agile and exceptional customer service 
+to international and domestic travellers in fast paced environment, 
+orchestrating
+                        travel schedules, supporting travel and 
+financial documentation and technical support for multiple online travel
+ systems including Serko and Concur.
+                    </p>
+                    <p>→ 92% client retention rate whilst meeting all 
+KPIs and contributor to team global award 2017 for TTV and profit aswell
+ as onboarding
+                        support and online system training for 3 new 
+clients.
+                    </p>
+                </div>
+                <div class="segment">
+                    <h2>Corporate Events and Group Travel Coordinator - Team Manager</h2> <h3> 2014-2016</h3>
+                    <h3>Corporate Groups - CI Events / Adelaide, SA/WA</h3> 
+                    <p>Management of 2 travel teams encompassing 4 brands</p>
+                    <p>→ Choreographing events and travel experiences 
+for large corporate groups from various origins and designing bespoke 
+online travel booking interfaces
+                        such as Cvent and Serko with respect to brand 
+alliance and associated ROI reporting to key stakeholders.
+                    </p>
+                    <p>→ Increase in revenue by 32% within first 3 
+months of management role providing new capability in the online group 
+booking sector, directly contributing to client retention in respective 
+corporate travel brand.
+                    </p>
+                </div>
+                <div class="segment">
+                    <h2>Corporate Travel Consultant</h2>  <h3> 2010-2014</h3>
+                    <h3>Corporate Traveller / Adelaide, SA</h3>
+                    <p>Provide 'one stop shop' travel management for SME corporate clients</p>
+                    <p>→ Deliver exceptional customer service to 
+international and domestic travellers whilst implementing internal 
+travel policies, responsible for all
+                        financial documentation, collection and 
+accounting and technical support and training for online booking 
+systems. Accountability
+                        for meeting all monthly individual and team KPIs
+ and ROI reporting to key client policy makers.            
+                    </p>
+                    <p>→ Individual and team Global awards for TTV and 
+profit increase 2012 and multiple area awards year on year. Voluntary 
+internal state technical support
+                        for new booking and accounting system rollout 
+"Tramada".
+                    </p>
+                </div>
+                <div class="segment">
+                    <h2>Professional Entertainer - Lead Vocalist</h2>  <h3> 2006-2009</h3>
+                    <h3>"Mischief", "Jo Public"/ Adelaide, SA</h3>
+                    <p>Lead vocalist in 2 bands</p>
+                    <p>→ Bespoke play list creation for each performance. Motivating and engaging entertainer for corporate events with a reputation
+                        for reliability, exceptional presentation and personable manner.
+                    </p>
+                    <p>→ Residency held for 12months at popular restaurant and entertainment precinct and Christmas entertainer at popular winery
+                        for 3 consecutive years.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+                <!-- SECTION | PROJECTS -->
+                <section id="sectionCareer">
+                    <div class="label">
+                        <h2>Projects</h2>
+                    </div>
+        
+                    <div class="body">
+                        <!-- SEGMENTS -->
+                        <div class="segment">
+                            <h2>Rosie</h2>
+                            <h3>A life saving mobile and smart watch app for women</h3> 
+                            <p>Concept design aimed at reducing the number of domestic violence cases against women and children using 
+                                a unique inconspicuous emergency services option that catches the purpetrator off guard.
+                            </p>
+                            <p>→ Skills: User Research using documented 
+statistics, media documentaries and published studies, Persona Creation,
+ User Journey, 
+                                Data Synthesis, Prioritisation Matrix, 
+User Flows, Technology and legality investigation, UX and UI Design, 
+Prototyping including Voice Activation, User Testing and web developed 
+Style Guide
+                            </p>
+                            <p>→ Technology Used: Adobe XD, Figma, Trello, HTML5, CSS
+                            </p>
+                        </div>
+
+                        <div class="segment">
+                            <h2>Riding For The Disabled Association SA</h2>
+                            <h3>Not-for-profit Responsive Web Re-design</h3>
+                            <p>Expectation was to give a very deserving 
+organisation's website a facelift, create a responsive design and 
+overall improve the rate of
+                                financial donation and volunteer sign 
+ups
+                            </p>
+                            <p>→ Skills: User Research (Interviews and 
+Survey), Stakeholder Interviews, Prioritisation Matrix, Accessibility 
+Assessment, Data Synthesis, Persona Creation, Information Architecture, 
+In-person User Testing,
+                                 Project Management, Statement Writing 
+and Imagery    
+                            </p>
+                            <p>→ Technology Used: Figma, Miro, Trello
+                            </p>
+                        </div>
+
+                        <div class="segment">
+                            <h2>Clean Energy Regulator</h2>
+                            <h3>Government Website Responsive Re-design</h3> 
+                            <p>Requirement was to improve the 
+navigation, accessibility and usability of this site for users at all 
+levels of Clean Energy understanding.</p>
+                            <p>→ Skills: Heuristic Evaluation, 
+Accessibility Assessment, Information Architecture, Sitemapping, Persona
+ Creation, Responsive UX Design, Wireframing, Interaction Design, 
+Prototyping, In-person and remote User Testing,
+                                 Typography and Iconography             
+                 
+                            </p>
+                            <p>→ Technology Used: Adobe XD, Miro
+                            </p>
+                        </div>
+
+                        <div class="segment">
+                            <h2>My Tradie</h2>
+                            <h3>A property owner's best friend when needing a tradie they can trust</h3>
+                            <p>Concept app for mobile that connects 
+property owners with local tradies in the interest of improving the 
+tradie/ client relationship through
+                                better communication and transparency, 
+creating repeat business and a happy customer.
+                            </p>
+                            <p>→ Skills: User Research (Interviews and 
+Survey), Competitor Analysis, Feature Prioritisation, Data Synthesis, 
+Persona Creation, Empathy Mapping, Information Architecture, User Flow, 
+User Experience Design,
+                                Wireframing, Interaction Design, 
+Prototyping, In-person User Testing and Project Management
+                                
+                            </p>
+                            <p>→ Technology Used: Figma, Miro, Trello
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+        <!-- SECTION | EDUCATION -->
+        <section id="sectionCareer">
+            <div class="label">
+                <h2>Education</h2>
+            </div>
+
+            <div class="body">
+                <!-- SEGMENTS -->
+                <div class="segment">
+                    <h2>Certificate UX/UI Design and Development Bootcamp </h2>
+                    <h3>University of Adelaide / Adelaide, SA</h3>
+                </div>
+                <div class="segment">
+                    <h2>Diploma of Business Management</h2>
+                    <h3>Flight Centre Travel Group  / Adelaide, SA</h3>
+                </div>
+                <div class="segment">
+                    <h2>Certificate IV in Hospitality</h2>
+                    <h3>Spotless  / Adelaide, SA</h3>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+
+
+</body></html>
